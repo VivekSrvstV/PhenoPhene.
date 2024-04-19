@@ -1,0 +1,104 @@
+{% extends 'headerfooter.html' %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+     <style>
+        #grad1 {
+            height: 55px;
+            background-image: linear-gradient(to right, white, lightblue, blue, lightblue, white);
+        }
+
+        .colors {
+            background-color: white;
+            color: black;
+        }
+
+        div {
+            text-align: justify;
+            text-justify: inter-word;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 4px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #cecfd5;
+        }
+
+        th,
+        td {
+            padding: 10px 15px;
+        }
+
+
+        .table td {
+            font-family: Tahoma;
+            font-size: 12px;
+            color: #000000;
+        }
+    </style>
+
+
+    <div class="datavalues" style="background-color: aliceblue;">
+    <div id="templatemo_main">
+
+        <div style="font-size: 20px; font-weight: bold; text-align: center; background: #eeeeee;"> About </div>
+
+        <div class="row">
+            <p type="square">The PhenoPhene is a meticulously maintained repository for Phenotype and genome-wide association studies (GWAS) of Plant Species. It is a centralized platform that adheres to strict quality control standards and is manually curated.</p>
+        </div>
+
+        <div class="row">
+            <div class="shadow p-3 mb-5 bg-body rounded col-12" style="margin-left:10px; height: 200px;">
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='images/jeulich.png') }}" style="width: 550px;" />
+                </div>
+                <div class="col-5" style="float: right; margin-top: -102px;">
+                    <p>Institute of Bio- and Geosciences (IBG)</p>
+                    <p>Bioinformatics (IBG-4)</p>
+                    <span>Wilhelm-Johnen-Straße</span>
+                    <span>52428 Jülich</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="shadow p-3 mb-5 bg-body rounded col-12" style="margin-left:10px; height: 200px;">
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='images/hds_1.png') }}" style="height: 100px;" />
+                </div>
+                <div class="col-5" style="float: right; margin-top: -80px;">
+                    <p>Institute of Bio- and Geosciences</p>
+                    <p>IBG-1: Biotechnology</p>
+                    <p>52425 Jülich</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="shadow p-3 mb-5 bg-body rounded col-12" style="margin-left:10px; height: 200px;">
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='images/hhu.png') }}" style="height: 100px;">
+                </div>
+                <div class="col-5" style="float: right; margin-top: -80px;">
+                    <p>Heinrich-Heine-Universität Düsseldorf</p>
+                    <p>Universitätsstr. 1</p>
+                    <p>40225 Düsseldorf</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'headerfooter.html' %}
+{% block title %}Search{% endblock %}
+{% block content %}
+
+<style>
+    .bodysrch {
+        margin: 0px;
+        padding: 0px;
+        width: 80vw;
+        height: 50vh;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Lato' !important;
+    }
+
+    .search-box {
+        width: fit-content;
+        height: fit-content;
+        position: relative;
+    }
+
+    .input-search {
+        height: 50px;
+        width: 50px;
+        border-style: none;
+        padding: 10px;
+        font-size: 18px;
+        letter-spacing: 2px;
+        outline: none;
+        border-radius: 25px;
+        transition: all .5s ease-in-out;
+        background-color: rgba(232, 167, 5, 0.96);
+        padding-right: 40px;
+        color: #020202;
+    }
+
+    .input-search::placeholder {
+        color: rgb(2, 2, 2);
+        font-size: 18px;
+        letter-spacing: 2px;
+        font-weight: 100;
+    }
+
+    .btn-search {
+        width: 50px;
+        height: 50px;
+        border-style: none;
+        font-size: 20px;
+        font-weight: bold;
+        outline: none;
+        cursor: pointer;
+        border-radius: 70%;
+        position: absolute;
+        right: 0px;
+        color: #020202;
+        background-color: transparent;
+        pointer-events: painted;
+    }
+
+    .btn-search:focus ~ .input-search {
+        width: 700px;
+        border-radius: 0px;
+        background-color: transparent;
+        border-bottom: 1px solid rgba(232, 167, 5, 0.96);
+        transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    }
+
+    .input-search:focus {
+        width: 700px;
+        border-radius: 0px;
+        background-color: transparent;
+        border-bottom: 1px solid rgba(232, 167, 5, 0.96);
+        transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+    }
+</style>
+<div style="background-color: aliceblue;">
+    <div class="row"><span style="font-size: 50px; font-family:'Lato'; font-weight: bolder; text-align: center">PhenoPhene</span></div>
+    <div class="row">
+        <span style="font-family:'Lato'; font-weight: bolder; text-align: center">PhenoPhene is a public database collection of plant phenotypes.<br>
+                    This Database allows searching and filtering for public phenotypes and obtaining additional meta-information.
+                    search
+            </span>
+    </div>
+    <div class="row">
+    <div class="bodysrch">
+        <form method="POST" action="{{ url_for('search') }}">
+            <div class="search-box">
+                <button type="submit" class="btn-search" style="text-align: center"><img src="{{ url_for('static', filename='images/search1.svg') }}" /></button>
+                <input type="text" id="search_input" name="search_input" class="input-search" required placeholder="Search a Phenotype, Study, Trait Ontology(Ex:Leaf)" />
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

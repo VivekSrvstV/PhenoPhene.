@@ -1,0 +1,150 @@
+{% extends 'headerfooter.html' %}
+
+{% block title %}Browse{% endblock %}
+
+{% block content %}
+
+
+
+    <style>
+.dive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.imgdiv {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  transform-style: preserve-3d;
+  perspective: 500px;
+  margin: auto;
+}
+.imgdiv .box {
+  position: relative;
+  width: 275px;
+  height: 275px;
+  background: #000;
+  transition: 0.5s;
+  transform-style: preserve-3d;
+  overflow: hidden;
+  margin-right: 15px;
+  margin-top: 45px;
+}
+.imgdiv:hover .box {
+  transform: rotateY(25deg);
+}
+.imgdiv .box:hover ~ .box {
+  transform: rotateY(-25deg);
+}
+.imgdiv .box:hover {
+  transform: rotateY(0deg) scale(1.25);
+  z-index: 1;
+  box-shadow: 0 25px 40px rgba(0,0,0,0.5);
+}
+.imgdiv .box .imgBx {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.imgdiv .box .imgBx:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg,#f00,#000);
+  z-index: 1;
+  opacity: 0;
+  transition: 0.5s;
+  mix-blend-mode: multiply;
+}
+.imgdiv .box:hover .imgBx:before {
+  opacity: 1;
+}
+.imgdiv .box .imgBx img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.imgdiv .box .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  padding: 20px;
+  align-items: flex-end;
+  box-sizing: border-box;
+}
+.imgdiv .box .content h2 {
+  color: #fff;
+  transition: 0.5s;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  font-size: 20px;
+  transform: translateY(200px);
+  transition-delay: 0.3s;
+}
+.imgdiv .box:hover .content h2 {
+  transform: translateY(0px);
+}
+.imgdiv .box .content p {
+  color: #fff;
+  transition: 0.5s;
+  font-size: 14px;
+  transform: translateY(200px);
+  transition-delay: 0.4s;
+}
+.imgdiv .box:hover .content p {
+  transform: translateY(0px);
+}
+    </style>
+
+
+
+
+  <div class="container">
+      {% if message %}
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+{{ message }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+  {% endif %}
+    <div class="row">
+      {% for row in data %}
+        <div class="col-md-4 imgdiv">
+          <div class="imageFiles divs">
+            <div class="box">
+              <!-- Your image and content -->
+              <!-- Ensure the image path is correct and accessible -->
+              <div class="imgBx">
+                <img src="../static/images/images-browse/{{ row.4 }}" alt="Image">
+              </div>
+              <div class="content">
+                <div>
+                  <h2>{{ row.3 }}</h2>
+                  <a href="{{ url_for('plant_details', table_name=row.1|urlencode) }}"><p>Phenotype</p></a>
+                  <a href="{{ url_for('plant_details', table_name=row.6|urlencode) }}"><p>SNP</p></a>
+                  <a href="{{ url_for('plant_details', table_name=row.5|urlencode) }}"><p>QTL</p></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Ensure proper closing of loops and divs -->
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

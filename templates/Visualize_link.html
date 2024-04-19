@@ -1,0 +1,32 @@
+{% extends 'headerfooter.html' %}
+{% block title %}Plant Details{% endblock %}
+{% block content %}
+
+<div class="row" style="margin-top: 20px;">
+    <table id="plant_details_table" class="display" style="width:100%;background-color: aliceblue;">
+        <thead class="thead-dark">
+            <tr>
+                {% for column in columns %}
+                <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#plant_details_table').DataTable({
+            scrollX: true,
+        });
+    });
+</script>
+{% endblock %}

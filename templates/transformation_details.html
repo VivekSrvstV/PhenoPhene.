@@ -1,0 +1,18 @@
+{% extends 'headerfooter.html' %}
+{% block title %}Correlation{% endblock %}
+{% block content %}
+
+<h2>Phenotype Transformation </h2>
+<div class="row" style="margin-top: 20px;">
+    <div class="shadow p-3 mb-5 bg-body rounded col-12" style="margin-left: 10px; height: 250px;">
+        <h2>Select a phenotype of interest using the search field to compute different transformations:</h2>
+        <form method="post" action="{% url 'correlation' %}">
+            {% csrf_token %}
+            <div>
+                <input type="text" placeholder="Add here" name="inputsearch" class="shadow p-3 mb-5 bg-body rounded col-12">
+                <button type="submit" class="btn btn-outline-primary btn-lg" style="float: right">Submit >>> </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,117 @@
+{% extends 'headerfooter.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+
+<style>
+    #grad1 {
+        height: 55px;
+        background-image: linear-gradient(to right, white, lightblue, blue, lightblue, white);
+    }
+
+    .colors {
+        background-color: white;
+        color: black;
+    }
+
+    .nav-link {
+        margin-bottom: 20px;
+        color: white;
+    }
+</style>
+
+<script>
+    $(function () {
+        $('#v-tab a').on('click', function (e) {
+            $("#v-tab").find("a").removeClass("colors");
+            $('#' + e.target.id).addClass("colors");
+
+            e.preventDefault();
+            $(this).tab('show');
+        });
+    });
+</script>
+
+<div class="row" style="margin-top: 10px; text-indent: 1em;">
+    <div class="col-md-2" style="background-color: #5f9ddb;border: 1px solid grey; height: 600px; width: 180px; padding-top: 50px;">
+
+        <!-- Nav tabs -->
+        <div class="nav flex-column nav" id="v-tab" role="tablist" aria-orientation="vertical"
+             style="height: 600px; text-indent: 1em;">
+            <a class="nav-link nav-link-new active" id="v-Welcome-tab" data-toggle="tab" href="#v-Welcome" role="tab"
+               aria-controls="v-Welcome" aria-selected="true">
+                <img src="{{ url_for('static', filename='images/bookmark.svg') }}"/> Welcome
+            </a>
+            <a class="nav-link nav-link-new" id="v-Data-tab" data-toggle="tab" href="#v-Data" role="tab"
+               aria-controls="v-Data" aria-selected="false">
+                <img src="{{ url_for('static', filename='images/database.svg') }}"/> &nbsp;Data
+            </a>
+            <a class="nav-link nav-link-new" id="v-Browse-tab" data-toggle="tab" href="#v-Browse" role="tab"
+               aria-controls="v-Browse" aria-selected="false">
+                <img src="{{ url_for('static', filename='images/database.svg') }}"/> &nbsp;Browse
+            </a>
+            <a class="nav-link nav-link-new" id="v-Search-tab" data-toggle="tab" href="#v-Search" role="tab"
+               aria-controls="v-Search" aria-selected="false">
+                <img src="{{ url_for('static', filename='images/search.svg') }}"/> &nbsp;Search
+            </a>
+            <a class="nav-link nav-link-new" id="v-Visualise-tab" data-toggle="tab" href="#v-Visualise" role="tab"
+               aria-controls="v-Visualise" aria-selected="false">
+                <img src="{{ url_for('static', filename='images/bar-chart-2.svg') }}"/> &nbsp;Visualise
+            </a>
+            <a class="nav-link nav-link-new" id="v-Deposit-tab" data-toggle="tab" href="#v-Deposit" role="tab"
+               aria-controls="v-Deposit" aria-selected="false">
+                <img src="{{ url_for('static', filename='images/upload.svg') }}"/> &nbsp;Download
+            </a>
+            <a class="nav-link nav-link-new" id="v-Learn-tab" data-toggle="tab" href="#v-Learn" role="tab"
+               aria-controls="v-Learn" aria-selected="false">
+                <img src="{{ url_for('static', filename='images/book-open.svg') }}"/> &nbsp;Help
+            </a>
+            <a class="nav-link nav-link-new " id="v-About-tab" data-toggle="tab" href="#v-About" role="tab"
+               aria-controls="v-About" aria-selected="true">
+                <img src="{{ url_for('static', filename='images/info.svg') }}"/> &nbsp;About
+            </a>
+        </div>
+    </div>
+    <div class="col">
+        <div class="tab-content" style="border: grey solid 1px;">
+            <div class="tab-content tabstyles" id="v-tabContent">
+                <div class="tab-pane fade show active" id="v-Welcome" role="tabpanel"
+                     aria-labelledby="v-Welcome-tab">
+                    <div class="row"><img src="{{ url_for('static', filename='images/home.png') }}"
+                                           style="height: 600px;"></div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="v-About" role="tabpanel" aria-labelledby="v-About-tab">
+                <div class="row"><img src="{{ url_for('static', filename='images/About_page.png') }}"
+                                       style="height: 600px;"></div>
+            </div>
+            <div class="tab-pane fade" id="v-Deposit" role="tabpanel" aria-labelledby="v-Deposit-tab">
+                <div class="row"><img src="{{ url_for('static', filename='images/down_page.png') }}"
+                                       style="height: 600px;"></div>
+            </div>
+            <div class="tab-pane fade" id="v-Browse" role="tabpanel" aria-labelledby="v-Browse-tab">
+                <div class="row"><img src="{{ url_for('static', filename='images/Browse_page.jpg') }}"
+                                       style="height: 600px;"></div>
+            </div>
+            <div class="tab-pane fade" id="v-Search" role="tabpanel" aria-labelledby="v-Search-tab">
+                <div class="row"><img src="{{ url_for('static', filename='images/search_page.jpg') }}"
+                                       style="height: 600px;"></div>
+            </div>
+            <div class="tab-pane fade" id="v-Visualise" role="tabpanel" aria-labelledby="v-Visualise-tab">
+                <div class="row"><img src="{{ url_for('static', filename='images/visu_page.png') }}"
+                                       style="height: 600px;"></div>
+            </div>
+            <div class="tab-pane fade" id="v-Data" role="tabpanel" aria-labelledby="v-Data-tab">
+                <div class="row"><img src="{{ url_for('static', filename='images/database.png') }}"
+                                       style="height: 600px;"></div>
+            </div>
+            <div class="tab-pane fade" id="v-Learn" role="tabpanel" aria-labelledby="v-Learn-tab">
+                <div class="row"><img src="{{ url_for('static', filename='images/Help_Page.png') }}"
+                                       style="height: 600px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

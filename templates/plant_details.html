@@ -1,0 +1,42 @@
+{% extends 'headerfooter.html' %}
+
+{% block title %}Plant Details{% endblock %}
+
+{% block content %}
+<style>
+    table, th, td {
+        border: 1px solid #e2e3e5;
+    }
+
+    thead, th {
+        padding: 10px;
+    }
+</style>
+<div class="row" style="margin-top: 20px;">
+    <table id="plant_details_table" class="display" style="width:100%;">
+        <thead class="thead-dark" style="color: white;background-color: #5f9ddb;;border-spacing: 0;border-collapse: separate">
+        <tr>
+            {% for column in columns %}
+            <th>{{ column }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in rows %}
+        <tr>
+            {% for value in row %}
+            <td>{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#plant_details_table').DataTable({
+            scrollX: true,
+        });
+    });
+</script>
+{% endblock %}

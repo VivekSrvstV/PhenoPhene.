@@ -1,0 +1,17 @@
+{% extends 'headerfooter.html' %}
+{% block title %}Correlation{% endblock %}
+{% block content %}
+
+<h2>Phenotype Correlation </h2>
+<div class="row" style="margin-top: 20px;">
+    <div class="shadow p-3 mb-5 bg-body rounded col-12" style="margin-left: 10px; height: 250px;">
+        <h2>Select at least two phenotypes using the search field (maximum 10):</h2>
+        <form method="post" action="{{ url_for('correlation_results') }}">
+            <div>
+                <input type="text" placeholder="Add here" name="inputsearch" class="shadow p-3 mb-5 bg-body rounded col-12">
+                <button type="submit" class="btn btn-outline-primary btn-lg" style="float: right">Submit >>> </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

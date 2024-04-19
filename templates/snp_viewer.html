@@ -1,0 +1,11 @@
+{% extends 'headerfooter.html' %}
+{% block title %}Browser{% endblock %}
+{% block content %}
+
+<h2> Single Nucleotide Polymorphism (SNPs) Viewer </h2>
+<div class="row" style="margin-top: 20px;">
+    <div class="shadow p-3 mb-5 bg-body rounded col-12" style="margin-left: 10px; height: 630px;">
+        <iframe style="border: 1px solid #505050; position: relative;" src="{{ url_for('static', filename='jbrowse/index.html') }}" height="600" width="1100"></iframe>
+    </div>
+</div>
+{% endblock %}

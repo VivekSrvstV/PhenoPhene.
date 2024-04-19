@@ -1,0 +1,37 @@
+{% extends 'headerfooter.html' %}
+{% block title %}search Details{% endblock %}
+{% block content %}
+
+{% for c in res %}
+  {% if c.rows %}
+    <h1>{{ c.tablename }}</h1>
+    <table id="search_details_table" class="display" style="width:100%;background-color: aliceblue;">
+      <thead class="thead-dark">
+        <tr>
+          {% for tval in c.cols %}
+            <th>{{ tval }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in c.rows %}
+          <tr>
+            {% for col in row %}
+              <td>{{ col }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endfor %}
+
+</div>
+<script>
+$(document).ready(function () {
+    $('#search_details_table').DataTable({
+        scrollX: true,
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'headerfooter.html' %}
+{% block title %}Correlation{% endblock %}
+{% block content %}
+
+<h2>Quantitative Trait Locus (QTLs) Viewer </h2>
+<div class="row" style="margin-top: 20px;">
+    <div class="shadow p-3 mb-5 bg-body rounded col-12" style="margin-left:10px;height: 750px; ">
+        <div>
+            <img src="{{ url_for('static', filename='images/qtl_image.png') }}" style="width: 1100px; height: 700px;"/>
+        </div>
+    </div>
+</div>
+{% endblock %}

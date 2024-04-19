@@ -1,0 +1,99 @@
+{% extends 'headerfooter.html' %}
+
+{% block title %}help{% endblock %}
+
+{% block content %}
+<style>
+    /* Your CSS styles here */
+</style>
+
+<div class="datavalues" style="background-color:aliceblue ">
+    <div id="templatemo_main">
+
+        <div style="font-size:20px;font-weight:bold;text-align:center;background:#eeeeee;"> General Information  </div>
+
+        <div class="row">
+
+        </div>
+        <div class="row" style="margin-top: 10px;margin-bottom: 30px;">
+            <div class="accordion" id="accordionExample">
+                <!-- Your accordion items here -->
+
+                <!-- Accordion Item 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            What is the PhenoPhene?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>The PhenoPhene is a meticulously maintained and standardized database that serves as a repository for information on Phenotype, QTLs, SNPs, and genome-wide association studies (GWAS) for various plant species.</strong> It is a reliable source of information that undergoes quality control and manual curation. The repository offers various views that allow users to gain an overview of the most commonly associated markers across all phenotypes available in the PhenoPhene, which is a central and publicly accessible repository for plant species phenotypes. With a full-text Elasticsearch, users can easily query the database for their preferred Phenotype, QTLs, SNPs, traits, or studies. The database offers detailed views with interactive visualizations for genes, phenotypes, and studies. These features help users gain an in-depth understanding of the top associations within the database. Various filters can be employed to refine the search outcomes, including the filtration of SNPs based on specific minor allele frequencies or genome annotations.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Is the data in the PhenoPhene public?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>Indeed, all information contained within PhenoPhene is publicly available. Please retrieve information on PhenoPhene, including its phenotype and the original study of the GWAS results, QTLs, and SNPs.</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Is it possible to download the data from the PhenoPhene?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>Certainly, we offer various methods for downloading the data. For further information, please refer to the FAQs section of the tutorials.</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Which data is included in PhenoPhene?
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>The PhenoPhene currently includes Phenotype, QTLs, SNPs, and GWAS results. These have been curated using a standardized method from publicly available scientific articles, databases, and other resources. The data will be consistently updated as new phenotypes are published.</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accordion Item 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFive">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            Where can I get more information about the data used for the PhenoPhene?
+                        </button>
+                    </h2>
+                    <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>The data presented in PhenoPhene was retrieved from publicly available sources. To learn more about the origin and growing conditions of the data, you can visit the PhenoPhene links located in the specific phenotype views.</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

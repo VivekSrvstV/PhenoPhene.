@@ -1,0 +1,44 @@
+<!-- download.html -->
+{% extends 'headerfooter.html' %}
+{% block title %}Download{% endblock %}
+{% block content %}
+
+<style>
+    /* Your CSS styles here */
+</style>
+
+<div class="datavalues" style="background-color: aliceblue">
+    <div id="templatemo_main">
+        <div style="font-size: x-large; font-weight: bold; text-align: center; background: #eeeeee;">Download</div>
+
+        <div>
+            <p type="square">PhenoPhene provides information about the phenotype traits of plants. Users can download all the Phenotype, SNPs, and QTLs for a particular plant species in .xls format by selecting the species under this tab.</p>
+        </div>
+
+        <table class="table" style="width: 100%; height: 250%">
+            <thead>
+                <tr>
+                    <th scope="col" style="font-size: x-large; color: #0b5ed7;">Plant</th>
+                    <th scope="col" style="font-size: x-large; color: #0b5ed7;">Download</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    <td style="font-size: x-large; color: #0b5ed7;">{{ row[1] }}</td>
+                    <td>
+
+                        <a href="{{ url_for('download_file', filename=row[1] + '.xlsx') }}" download>
+                            <img src="{{ url_for('static', filename='images/download_link.png') }}" style="width: 50px; height: 50px;"/>
+                        </a>
+
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

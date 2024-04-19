@@ -1,0 +1,421 @@
+{% extends 'headerfooter.html' %}
+{% block title %}Visualize{% endblock %}
+{% block content %}
+
+
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Raleway:400,800);
+
+        figure.snip1104 {
+            font-family: 'Raleway', Arial, sans-serif;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+            min-width: 220px;
+            max-width: 310px;
+            max-height: 220px;
+            width: 100%;
+            color: #ffffff;
+            text-align: center;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+        }
+
+        figure.snip1104 * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all 0.4s ease-in-out;
+            transition: all 0.4s ease-in-out;
+        }
+
+        figure.snip1104 img {
+            max-width: 100%;
+            position: relative;
+        }
+
+        figure.snip1104 figcaption {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        figure.snip1104 h2 {
+            position: absolute;
+            left: 40px;
+            right: 40px;
+            display: inline-block;
+            -webkit-transform: skew(-10deg) rotate(-10deg) translate(0, -50%);
+            transform: skew(-10deg) rotate(-10deg) translate(0, -50%);
+            padding: 12px 5px;
+            margin: 0;
+            top: 50%;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        figure.snip1104 h2 span {
+            font-weight: 800;
+        }
+
+        figure.snip1104:before {
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            content: '';
+            position: absolute;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            -webkit-transform: rotate(110deg) translateY(-50%);
+            transform: rotate(110deg) translateY(-50%);
+        }
+
+        figure.snip1104 a {
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            z-index: 1;
+        }
+
+        figure.snip1104.blue {
+        }
+
+        figure.snip1104.blue h2 {
+            background: #0a212f;
+        }
+
+        figure.snip1104.red {
+        }
+
+        figure.snip1104.red h2 {
+            background: #36100c;
+        }
+
+        figure.snip1104.yellow {
+            background: #7f5006;
+        }
+
+        figure.snip1104.yellow h2 {
+            background: #583804;
+        }
+
+        figure.snip1104:hover img,
+        figure.snip1104.hover img {
+            opacity: 1;
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        figure.snip1104:hover h2,
+        figure.snip1104.hover h2 {
+            -webkit-transform: skew(-10deg) rotate(-10deg) translate(-150%, -50%);
+            transform: skew(-10deg) rotate(-10deg) translate(-150%, -50%);
+        }
+
+        figure.snip1104:hover:before,
+        figure.snip1104.hover:before {
+            -webkit-transform: rotate(110deg) translateY(-150%);
+            transform: rotate(110deg) translateY(-150%);
+        }
+
+        .bodies {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: wrap;
+            margin: 0;
+            height: 100%;
+        }
+    </style>
+
+
+<!----------------------------------------------------------------------------------- GraphY Tools First One --------------------------------------------------------------- -->  
+
+    <div class="container_box">
+     <style>
+    h1.increase {
+       font-size: 25px;
+       }
+     </style>
+        <h1 class="increase" style="font-size:25px !important;"> Graphy tool</h1>
+        <h1 class="increase" style="font-size:15px !important;"> Create beautiful, interactive graphs with phenotype data instantly. One click to get your data in charts. </h1>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv">
+            <input type="submit" value="Upload">
+        </form>
+
+        <h1>Plot</h1>
+        <form method="POST" action="/plot">
+            <input type="hidden" name="file_path" value="{{ file_path }}">
+
+            <label for="x_axis">X-axis:</label>
+            <select id="x_axis" name="x_axis">
+                {% for column in columns %}
+                    <option value="{{ column }}" {% if x_selected == column %}selected{% endif %}>{{ column }}</option>
+                {% endfor %}
+            </select>
+            <label for="y_axis">Y-axis:</label>
+            <select id="y_axis" name="y_axis">
+                {% for column in columns %}
+                    <option value="{{ column }}" {% if y_selected == column %}selected{% endif %}>{{ column }}</option>
+                {% endfor %}
+            </select>
+            <div class="button-container">
+                <button type="submit" name="plot_button" class="styled-button">Bar Chart</button>
+                <button type="submit" name="histogram_button" class="styled-button">Histogram</button>
+                <button type="submit" name="boxplot_button" class="styled-button">Box Plot</button>
+                <button type="submit" name="scatter_plot_button" class="styled-button">Scatter Plot</button>
+                <button type="submit" name="violin_plot_button" class="styled-button">Violin Plot</button>
+                <button type="submit" name="line_chart_button" class="styled-button">Line Chart</button>
+                <button type="submit" name="heatmap_button" class="styled-button">Heatmap</button>
+            </div>
+        </form>
+
+        <div class="plot">
+            {% if plot_div %}
+                {{ plot_div|safe }}
+            {% else %}
+                <p>{{ message }}</p>
+            {% endif %}
+        </div>
+    </div>
+    
+    
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container_box {
+            max-width: 1250px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="file"],
+        select,
+        input[type="submit"] {
+            margin: 5px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="file"] {
+            width: 100%;
+        }
+        label {
+            margin-right: 5px;
+        }
+        .plot {
+            width: 50%;
+            margin-top: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .styled-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .styled-button:hover {
+            background-color: #2980b9;
+        }
+    </style>    
+</div>
+
+
+
+<!----------------------------------------------------------------------------------- ManHattan Plot Second One --------------------------------------------------------------- --> 
+
+<html>
+<head>
+    <title>Manhattan Plot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container_box {
+            max-width: 1275px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="file"],
+        select,
+        input[type="submit"] {
+            margin: 5px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="file"] {
+            width: 100%;
+        }
+        label {
+            margin-right: 5px;
+        }
+        .plot {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .styled-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .styled-button:hover {
+            background-color: #2980b9;
+        }
+        h1.increase {
+            font-size: 25px;
+        }
+        img {
+            width: 50%; /* Adjust the width as needed */
+            height: auto;
+            margin-top: 25px;
+            margin-left: 250px; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container_box">
+        <h2>Upload a CSV file to plot</h2>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Upload">
+        </form>
+        
+        {% if plot_url %}
+            <h3>Manhattan Plot</h3>
+            <img src="data:image/png;base64,{{ plot_url }}" alt="Manhattan Plot">
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
+<!----------------------------------------------------------------------------------- JBrowser Third One --------------------------------------------------------------- --> 
+
+
+
+
+
+
+<div class="container_box">
+     <style>
+    h1.increase {
+       font-size: 25px;
+       }
+     </style>
+        <h1 class="increase" style="font-size:25px !important;"> Graphy tool</h1>
+        <h1 class="increase" style="font-size:15px !important;"> Create beautiful, interactive graphs with phenotype data instantly. One click to get your data in charts. </h1>
+        <form method="POST" action="/upload" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".csv">
+            <input type="submit" value="Upload">
+        </form>
+
+      
+    </div>
+    
+      <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container_box {
+            max-width: 1275px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-top: 0;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="file"],
+        select,
+        input[type="submit"] {
+            margin: 5px 0;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="file"] {
+            width: 100%;
+        }
+        label {
+            margin-right: 5px;
+        }
+        .plot {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .styled-button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .styled-button:hover {
+            background-color: #2980b9;
+        }
+    </style>    
+</div>
+{% endblock %}
